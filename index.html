@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>remo TV ريمو تيفي</title>
+  <link rel="icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/alnasseri-70c15.appspot.com/o/fs%2F1000032030.png?alt=media&token=0eef3c8f-6eba-4af6-bd33-da5a6870418b">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2CAF1D;
+      --secondary: #179CDE;
+      --danger: #FF6347;
+      --bg-light: #f2f2f2;
+      --text-light: #222;
+      --bg-dark: #121212;
+      --text-dark: #e0e0e0;
+      --card-dark: #1e1e1e;
+      --border-dark: #333;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    header {
+      width: 100%;
+      background-color: white;
+      padding: 10px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    body.dark header {
+      background-color: var(--card-dark);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    header img {
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .theme-toggle {
+      background-color: transparent;
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body.dark .theme-toggle {
+      border-color: var(--text-dark);
+      color: var(--text-dark);
+    }
+
+    .player-container {
+      width: 95%;
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: background-color 0.3s;
+    }
+
+    body.dark .player-container {
+      background-color: var(--card-dark);
+    }
+
+    #video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .quality-selector,
+    .download-section,
+    .report-issue,
+    .telegram-join {
+      background-color: white;
+      border-radius: 10px;
+      margin: 15px;
+      padding: 10px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark .quality-selector,
+    body.dark .download-section,
+    body.dark .report-issue,
+    body.dark .telegram-join {
+      background-color: var(--card-dark);
+    }
+
+    .quality-selector label,
+    .quality-selector select,
+    .download-section h2,
+    .quality-note,
+    .download-buttons button,
+    .report-issue button,
+    .telegram-join button {
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .quality-note {
+      text-align: center;
+      color: #d80000;
+      font-weight: 600;
+    }
+
+    .download-buttons button,
+    .report-issue button,
+    .telegram-join button {
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+    }
+
+    .download-buttons a:last-child button {
+      background-color: #3DDC84;
+    }
+
+    .report-issue button {
+      background-color: var(--danger);
+      color: white;
+    }
+
+    .telegram-join button {
+      background-color: white;
+      color: var(--secondary);
+      border: 2px solid var(--secondary);
+    }
+
+    body.dark .telegram-join button {
+      background-color: var(--card-dark);
+      color: var(--text-dark);
+      border-color: var(--text-dark);
+    }
+
+    #telegramDialog {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    #telegramDialog .dialog-box {
+      background: white;
+      padding: 20px 25px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 300px;
+    }
+
+    body.dark #telegramDialog .dialog-box {
+      background: var(--card-dark);
+      color: var(--text-dark);
+    }
+
+    #telegramDialog .dialog-actions button {
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .confirm {
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+    }
+
+    .cancel {
+      background-color: #ccc;
+      color: black;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="https://firebasestorage.googleapis.com/v0/b/alnasseri-70c15.appspot.com/o/fs%2F1000142637.png?alt=media&token=a6caf096-876f-49e1-8368-2a622f847e6d" alt="remo TV Logo">
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()">تبديل الوضع</button>
+  </header>
+
+  <div class="player-container">
+    <video id="video" controls autoplay playsinline></video>
+  </div>
+
+  <div class="quality-selector">
+    <label for="quality">اختر الجودة:</label>
+    <select id="quality">
+      <option value="auto">تلقائي</option>
+    </select>
+  </div>
+
+  <div class="quality-note">تنبيه: يتم عرض المباريات المهمة فقط!</div>
+
+  <div class="download-section">
+    <h2><strong>حمل التطبيق الآن</strong></h2>
+    <div class="download-buttons">
+      <a href="https://www.mediafire.com/file/hsnp64lq06cm0zw/remo_TV_v3.91.apk/file" target="_blank">
+        <button>
+          <img src="https://logowik.com/content/uploads/images/mediafire4922.logowik.com.webp" alt="Mediafire Logo">
+          ميديا فاير
+        </button>
+      </a>
+      <a href="https://apkpure.com/remo-tv-player/com.remo.player/download" target="_blank">
+        <button>
+          <img src="https://cdn-1.webcatalog.io/catalog/apkpure/apkpure-icon-filled-256.png?v=1714773022463" alt="APKPure Logo">
+          APKPure
+        </button>
+      </a>
+    </div>
+    <div class="telegram-join">
+      <a href="https://t.me/remotvv" target="_blank">
+        <button>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Logo">
+          إنضم إلى قناتنا على تليجرام
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <div class="report-issue">
+    <a href="https://t.me/remo_dev_bot" target="_blank">
+      <button>
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Report Icon">
+        الإبلاغ عن مشكلة
+      </button>
+    </a>
+  </div>
+
+  <!-- Dialog -->
+  <div id="telegramDialog">
+    <div class="dialog-box">
+      <h2>تنبيه</h2>
+      <p>إشترك بقناتنا على التلجرام لمتابعة أخبار التطبيق والموقع</p>
+      <div class="dialog-actions">
+        <button class="confirm" onclick="window.location.href='https://t.me/remotvv'">موافق</button>
+        <button class="cancel" onclick="document.getElementById('telegramDialog').style.display='none'">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/shaka-player@latest/dist/shaka-player.compiled.js"></script>
+  <script>
+    let player;
+
+    async function initApp() {
+      const video = document.getElementById('video');
+      player = new shaka.Player(video);
+      player.addEventListener('error', (e) => console.error('خطأ:', e.detail));
+
+      try {
+        await player.load('https://edge11.620097.ir.cdn.ir/hls2/b1.m3u8');
+        console.log('تم تحميل الفيديو بنجاح');
+        const tracks = player.getVariantTracks();
+        const select = document.getElementById('quality');
+
+        tracks.forEach((track) => {
+          const option = document.createElement('option');
+          option.value = track.id;
+          option.textContent = `${track.height}p`;
+          select.appendChild(option);
+        });
+
+        select.addEventListener('change', () => {
+          const selected = select.value;
+          if (selected === 'auto') {
+            player.configure({ abr: { enabled: true } });
+          } else {
+            player.configure({ abr: { enabled: false } });
+            const track = tracks.find(t => t.id == selected);
+            if (track) {
+              player.selectVariantTrack(track, true);
+            }
+          }
+        });
+
+      } catch (error) {
+        console.error('فشل التحميل', error);
+      }
+    }
+
+    if (shaka.Player.isBrowserSupported()) {
+      initApp();
+    } else {
+      alert('المتصفح لا يدعم تشغيل الفيديو عبر Shaka Player');
+    }
+
+    window.addEventListener('load', () => {
+      document.getElementById('telegramDialog').style.display = 'flex';
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.body.classList.toggle('dark', savedTheme === 'dark');
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.body.classList.toggle('dark', prefersDark);
+      }
+    });
+
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+  </script>
+</body>
+</html>
