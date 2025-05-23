@@ -7,34 +7,16 @@
   <link rel="icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/alnasseri-70c15.appspot.com/o/fs%2F1000032030.png?alt=media&token=0eef3c8f-6eba-4af6-bd33-da5a6870418b">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #2CAF1D;
-      --secondary: #179CDE;
-      --danger: #FF6347;
-      --bg-light: #f2f2f2;
-      --text-light: #222;
-      --bg-dark: #121212;
-      --text-dark: #e0e0e0;
-      --card-dark: #1e1e1e;
-      --border-dark: #333;
-    }
-
     body {
       margin: 0;
       padding: 0;
       font-family: 'Cairo', sans-serif;
-      background-color: var(--bg-light);
-      color: var(--text-light);
+      background-color: #f2f2f2;
+      color: #222;
       display: flex;
       flex-direction: column;
       align-items: center;
       overflow-x: hidden;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    body.dark {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
     }
 
     header {
@@ -43,39 +25,18 @@
       padding: 10px 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-    }
-
-    body.dark header {
-      background-color: var(--card-dark);
+      justify-content: center;
     }
 
     .logo-container {
       display: flex;
-      align-items: center;
+      justify-content: center;
+      transform: translateX(5px);
     }
 
     header img {
       height: 60px;
       object-fit: contain;
-    }
-
-    .theme-toggle {
-      background-color: transparent;
-      border: 2px solid var(--secondary);
-      color: var(--secondary);
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-size: 14px;
-      cursor: pointer;
-      font-family: 'Cairo', sans-serif;
-    }
-
-    body.dark .theme-toggle {
-      border-color: var(--text-dark);
-      color: var(--text-dark);
     }
 
     .player-container {
@@ -86,11 +47,6 @@
       border-radius: 15px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       overflow: hidden;
-      transition: background-color 0.3s;
-    }
-
-    body.dark .player-container {
-      background-color: var(--card-dark);
     }
 
     #video {
@@ -99,74 +55,156 @@
       display: block;
     }
 
-    .quality-selector,
-    .download-section,
-    .report-issue,
-    .telegram-join {
-      background-color: white;
+    .quality-selector {
+      margin: 15px auto 5px;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      border: 2px solid #2CAF1D;
       border-radius: 10px;
-      margin: 15px;
-      padding: 10px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    body.dark .quality-selector,
-    body.dark .download-section,
-    body.dark .report-issue,
-    body.dark .telegram-join {
-      background-color: var(--card-dark);
-    }
-
-    .quality-selector label,
-    .quality-selector select,
-    .download-section h2,
-    .quality-note,
-    .download-buttons button,
-    .report-issue button,
-    .telegram-join button {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      text-align: center;
       font-family: 'Cairo', sans-serif;
     }
 
-    .quality-note {
-      text-align: center;
-      color: #d80000;
+    .quality-selector label {
+      font-size: 16px;
       font-weight: 600;
+      color: #2CAF1D;
+      margin-left: 10px;
     }
 
-    .download-buttons button,
-    .report-issue button,
-    .telegram-join button {
-      cursor: pointer;
+    .quality-selector select {
+      padding: 6px 12px;
+      font-size: 15px;
+      border: 1px solid #ccc;
       border-radius: 6px;
+      outline: none;
+      background-color: #f9f9f9;
+      color: #333;
+      transition: border 0.3s ease;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .quality-selector select:focus {
+      border-color: #2CAF1D;
+    }
+
+    .quality-note {
+      font-size: 14px;
+      color: #d80000;
+      font-weight: 600;
+      margin: 10px auto 10px;
+      text-align: center;
+    }
+
+    .report-issue {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .report-issue a {
+      text-decoration: none;
+    }
+
+    .report-issue button {
+      background-color: #FF6347;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      font-size: 13px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .report-issue img {
+      height: 16px;
+    }
+
+    .download-section {
+      text-align: center;
+      margin: 30px auto;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .download-section h2 {
+      color: #2CAF1D;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .download-section h2 strong {
+      font-weight: 700;
+    }
+
+    .download-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .download-buttons a {
+      text-decoration: none;
+    }
+
+    .download-buttons button {
+      background-color: #179CDE;
+      color: white;
+      border: none;
       padding: 8px 14px;
       font-size: 14px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       gap: 8px;
-      border: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
     }
 
     .download-buttons a:last-child button {
       background-color: #3DDC84;
     }
 
-    .report-issue button {
-      background-color: var(--danger);
-      color: white;
+    .download-buttons img {
+      height: 20px;
+    }
+
+    .telegram-join {
+      display: flex;
+      justify-content: center;
+    }
+
+    .telegram-join a {
+      text-decoration: none;
     }
 
     .telegram-join button {
+      width: 100%;
       background-color: white;
-      color: var(--secondary);
-      border: 2px solid var(--secondary);
+      color: #179CDE;
+      border: 2px solid #179CDE;
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
     }
 
-    body.dark .telegram-join button {
-      background-color: var(--card-dark);
-      color: var(--text-dark);
-      border-color: var(--text-dark);
+    .telegram-join img {
+      height: 20px;
     }
 
+    /* Dialog */
     #telegramDialog {
       position: fixed;
       top: 0;
@@ -186,30 +224,42 @@
       border-radius: 10px;
       text-align: center;
       max-width: 300px;
+      font-family: 'Cairo', sans-serif;
     }
 
-    body.dark #telegramDialog .dialog-box {
-      background: var(--card-dark);
-      color: var(--text-dark);
+    #telegramDialog h2 {
+      margin-top: 0;
+      color: #D9534F;
     }
 
-    #telegramDialog .dialog-actions button {
+    #telegramDialog p {
+      font-size: 15px;
+    }
+
+    #telegramDialog .dialog-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    #telegramDialog button {
       padding: 6px 12px;
       font-size: 14px;
+      border: none;
       border-radius: 6px;
       cursor: pointer;
+      font-family: 'Cairo', sans-serif;
     }
 
-    .confirm {
-      background-color: var(--secondary);
+    #telegramDialog .confirm {
+      background-color: #179CDE;
       color: white;
-      border: none;
     }
 
-    .cancel {
+    #telegramDialog .cancel {
       background-color: #ccc;
       color: black;
-      border: none;
     }
   </style>
 </head>
@@ -219,7 +269,6 @@
     <div class="logo-container">
       <img src="https://firebasestorage.googleapis.com/v0/b/alnasseri-70c15.appspot.com/o/fs%2F1000142637.png?alt=media&token=a6caf096-876f-49e1-8368-2a622f847e6d" alt="remo TV Logo">
     </div>
-    <button class="theme-toggle" onclick="toggleTheme()">تبديل الوضع</button>
   </header>
 
   <div class="player-container">
@@ -289,11 +338,13 @@
     async function initApp() {
       const video = document.getElementById('video');
       player = new shaka.Player(video);
+
       player.addEventListener('error', (e) => console.error('خطأ:', e.detail));
 
       try {
         await player.load('https://edge11.620097.ir.cdn.ir/hls2/b1.m3u8');
         console.log('تم تحميل الفيديو بنجاح');
+
         const tracks = player.getVariantTracks();
         const select = document.getElementById('quality');
 
@@ -328,22 +379,10 @@
       alert('المتصفح لا يدعم تشغيل الفيديو عبر Shaka Player');
     }
 
+    // Show dialog on load
     window.addEventListener('load', () => {
       document.getElementById('telegramDialog').style.display = 'flex';
-
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        document.body.classList.toggle('dark', savedTheme === 'dark');
-      } else {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.body.classList.toggle('dark', prefersDark);
-      }
     });
-
-    function toggleTheme() {
-      const isDark = document.body.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    }
   </script>
 </body>
 </html>
