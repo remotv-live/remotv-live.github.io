@@ -231,44 +231,52 @@
 
     #channelDialog .dialog-box {
       background: white;
-      padding: 20px;
+      padding: 15px;
       border-radius: 10px;
       text-align: center;
-      max-width: 90%;
-      width: 400px;
+      max-width: 95%;
+      width: 380px;
       font-family: 'Cairo', sans-serif;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
     #channelDialog h2 {
       margin-top: 0;
       color: #2CAF1D;
       text-align: center;
+      margin-bottom: 15px;
     }
 
     .channel-group {
-      margin-bottom: 20px;
-      text-align: right;
+      margin-bottom: 15px;
+      text-align: center;
     }
 
     .channel-group h3 {
       color: #179CDE;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .channels-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 10px;
     }
 
     .channel-btn {
-      display: block;
-      width: 100%;
-      padding: 8px 12px;
-      margin-bottom: 8px;
+      padding: 6px 10px;
       background-color: #f5f5f5;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-family: 'Cairo', sans-serif;
-      text-align: right;
+      font-size: 13px;
       transition: background-color 0.3s;
+      min-width: 80px;
     }
 
     .channel-btn:hover {
@@ -276,7 +284,7 @@
     }
 
     .close-dialog {
-      margin-top: 15px;
+      margin-top: 10px;
       padding: 8px 16px;
       background-color: #FF6347;
       color: white;
@@ -284,6 +292,7 @@
       border-radius: 5px;
       cursor: pointer;
       font-family: 'Cairo', sans-serif;
+      width: 100%;
     }
 
     /* Telegram Dialog */
@@ -373,7 +382,7 @@
     <div class="download-buttons">
       <a href="https://www.mediafire.com/file/hsnp64lq06cm0zw/remo_TV_v3.91.apk/file" target="_blank">
         <button>
-          <img src="https://logowik.com/content/uploads/images/mediafire4922.logowik.com.webp" alt="Mediafire Logo">
+          <img src="https://i.pinimg.com/474x/b9/55/e9/b955e929305c5934632d9ecfab2f5b30.jpg" alt="Mediafire Logo">
           ميديا فاير
         </button>
       </a>
@@ -410,22 +419,28 @@
       
       <div class="channel-group">
         <h3>beIN Sports</h3>
-        <button class="channel-btn" onclick="playChannel('https://top1-cdnnew.newkso.ru/top1-cdn/mrn5B7M8LK/mono.m3u8')">beIN Sports 1</button>
-        <button class="channel-btn" onclick="playChannel('bein2link')">beIN Sports 2</button>
-        <button class="channel-btn" onclick="playChannel('bein3link')">beIN Sports 3</button>
+        <div class="channels-row">
+          <button class="channel-btn" onclick="playChannel('https://top1-cdnnew.newkso.ru/top1-cdn/mrn5B7M8LK/mono.m3u8')">1</button>
+          <button class="channel-btn" onclick="playChannel('bein2link')">2</button>
+          <button class="channel-btn" onclick="playChannel('bein3link')">3</button>
+        </div>
       </div>
       
       <div class="channel-group">
         <h3>SSC</h3>
-        <button class="channel-btn" onclick="playChannel('https://stream.sainaertebat.com/hls2/ssc1.m3u8')">SSC 1</button>
-        <button class="channel-btn" onclick="playChannel('ssc2link')">SSC 2</button>
-        <button class="channel-btn" onclick="playChannel('ssc3link')">SSC 3</button>
+        <div class="channels-row">
+          <button class="channel-btn" onclick="playChannel('https://stream.sainaertebat.com/hls2/ssc1.m3u8')">1</button>
+          <button class="channel-btn" onclick="playChannel('ssc2link')">2</button>
+          <button class="channel-btn" onclick="playChannel('ssc3link')">3</button>
+        </div>
       </div>
       
       <div class="channel-group">
         <h3>AD SPORTS</h3>
-        <button class="channel-btn" onclick="playChannel('https://top1-cdnnew.newkso.ru/top1-cdn/N0nZoHOXsC/mono.m3u8')">AD SPORTS PREMIUM 1</button>
-        <button class="channel-btn" onclick="playChannel('https://cdn1.yallaboom.online/live/starz2/playlist.m3u8')">AD SPORTS PREMIUM 2</button>
+        <div class="channels-row">
+          <button class="channel-btn" onclick="playChannel('https://top1-cdnnew.newkso.ru/top1-cdn/N0nZoHOXsC/mono.m3u8')">PREMIUM 1</button>
+          <button class="channel-btn" onclick="playChannel('https://cdn1.yallaboom.online/live/starz2/playlist.m3u8')">PREMIUM 2</button>
+        </div>
       </div>
       
       <button class="close-dialog" onclick="hideChannelDialog()">إغلاق</button>
