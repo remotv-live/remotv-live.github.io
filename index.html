@@ -47,6 +47,7 @@
       border-radius: 15px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       overflow: hidden;
+      display: none;
     }
 
     #video {
@@ -64,6 +65,7 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       text-align: center;
       font-family: 'Cairo', sans-serif;
+      display: none;
     }
 
     .quality-selector label {
@@ -89,12 +91,21 @@
       border-color: #2CAF1D;
     }
 
-    .quality-note {
-      font-size: 14px;
-      color: #d80000;
-      font-weight: 600;
-      margin: 10px auto 10px;
+    .channel-selector {
       text-align: center;
+      margin: 10px auto;
+      display: none;
+    }
+
+    .channel-selector button {
+      background-color: #2CAF1D;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
     }
 
     .report-issue {
@@ -204,7 +215,78 @@
       height: 20px;
     }
 
-    /* Dialog */
+    /* Channel Dialog */
+    #channelDialog {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    #channelDialog .dialog-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 90%;
+      width: 400px;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    #channelDialog h2 {
+      margin-top: 0;
+      color: #2CAF1D;
+      text-align: center;
+    }
+
+    .channel-group {
+      margin-bottom: 20px;
+      text-align: right;
+    }
+
+    .channel-group h3 {
+      color: #179CDE;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .channel-btn {
+      display: block;
+      width: 100%;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      background-color: #f5f5f5;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      text-align: right;
+      transition: background-color 0.3s;
+    }
+
+    .channel-btn:hover {
+      background-color: #e0e0e0;
+    }
+
+    .close-dialog {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background-color: #FF6347;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    /* Telegram Dialog */
     #telegramDialog {
       position: fixed;
       top: 0;
@@ -275,14 +357,16 @@
     <video id="video" controls autoplay playsinline></video>
   </div>
 
+  <div class="channel-selector">
+    <button onclick="showChannelDialog()">تغيير القناة</button>
+  </div>
+
   <div class="quality-selector">
     <label for="quality">اختر الجودة:</label>
     <select id="quality">
       <option value="auto">تلقائي</option>
     </select>
   </div>
-
-  <div class="quality-note">تنبيه: يتم عرض المباريات المهمة فقط!</div>
 
   <div class="download-section">
     <h2><strong>حمل التطبيق الآن</strong></h2>
@@ -319,7 +403,36 @@
     </a>
   </div>
 
-  <!-- Dialog -->
+  <!-- Channel Dialog -->
+  <div id="channelDialog">
+    <div class="dialog-box">
+      <h2>إختر القناة</h2>
+      
+      <div class="channel-group">
+        <h3>beIN Sports</h3>
+        <button class="channel-btn" onclick="playChannel('https://top1-cdnnew.newkso.ru/top1-cdn/mrn5B7M8LK/mono.m3u8')">beIN Sports 1</button>
+        <button class="channel-btn" onclick="playChannel('bein2link')">beIN Sports 2</button>
+        <button class="channel-btn" onclick="playChannel('bein3link')">beIN Sports 3</button>
+      </div>
+      
+      <div class="channel-group">
+        <h3>SSC</h3>
+        <button class="channel-btn" onclick="playChannel('https://stream.sainaertebat.com/hls2/ssc1.m3u8')">SSC 1</button>
+        <button class="channel-btn" onclick="playChannel('ssc2link')">SSC 2</button>
+        <button class="channel-btn" onclick="playChannel('ssc3link')">SSC 3</button>
+      </div>
+      
+      <div class="channel-group">
+        <h3>AD SPORTS</h3>
+        <button class="channel-btn" onclick="playChannel('https://top1-cdnnew.newkso.ru/top1-cdn/N0nZoHOXsC/mono.m3u8')">AD SPORTS PREMIUM 1</button>
+        <button class="channel-btn" onclick="playChannel('https://cdn1.yallaboom.online/live/starz2/playlist.m3u8')">AD SPORTS PREMIUM 2</button>
+      </div>
+      
+      <button class="close-dialog" onclick="hideChannelDialog()">إغلاق</button>
+    </div>
+  </div>
+
+  <!-- Telegram Dialog -->
   <div id="telegramDialog">
     <div class="dialog-box">
       <h2>تنبيه</h2>
@@ -335,18 +448,44 @@
   <script>
     let player;
 
-    async function initApp() {
-      const video = document.getElementById('video');
-      player = new shaka.Player(video);
+    function showChannelDialog() {
+      document.getElementById('channelDialog').style.display = 'flex';
+    }
 
+    function hideChannelDialog() {
+      document.getElementById('channelDialog').style.display = 'none';
+    }
+
+    function playChannel(streamUrl) {
+      document.querySelector('.player-container').style.display = 'block';
+      document.querySelector('.quality-selector').style.display = 'block';
+      document.querySelector('.channel-selector').style.display = 'block';
+      hideChannelDialog();
+      initPlayer(streamUrl);
+    }
+
+    async function initPlayer(streamUrl) {
+      const video = document.getElementById('video');
+      
+      // If player already exists, destroy it first
+      if (player) {
+        await player.destroy();
+      }
+      
+      player = new shaka.Player(video);
       player.addEventListener('error', (e) => console.error('خطأ:', e.detail));
 
       try {
-        await player.load('https://top1-cdnnew.newkso.ru/top1-cdn/N0nZoHOXsC/mono.m3u8');
+        await player.load(streamUrl);
         console.log('تم تحميل الفيديو بنجاح');
 
         const tracks = player.getVariantTracks();
         const select = document.getElementById('quality');
+        
+        // Clear existing options except auto
+        while (select.options.length > 1) {
+          select.remove(1);
+        }
 
         tracks.forEach((track) => {
           const option = document.createElement('option');
@@ -374,15 +513,15 @@
     }
 
     if (shaka.Player.isBrowserSupported()) {
-      initApp();
+      // Initialize with empty player, will load when channel selected
     } else {
       alert('المتصفح لا يدعم تشغيل الفيديو عبر Shaka Player');
     }
 
-    // Show dialog on load
-    window.addEventListener('load', () => {
+    // Show telegram dialog after channel selection
+    function showTelegramDialog() {
       document.getElementById('telegramDialog').style.display = 'flex';
-    });
+    }
   </script>
 </body>
 </html>
