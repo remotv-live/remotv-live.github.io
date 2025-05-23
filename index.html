@@ -342,15 +342,7 @@
       player.addEventListener('error', (e) => console.error('خطأ:', e.detail));
 
       try {
-        // Configure network request to include referer
-        player.getNetworkingEngine().registerRequestFilter(function(type, request) {
-          if (type === shaka.net.NetworkingEngine.RequestType.MANIFEST ||
-              type === shaka.net.NetworkingEngine.RequestType.SEGMENT) {
-            request.headers['Referer'] = 'https://fram.sport4all.online';
-          }
-        });
-
-        await player.load('https://cdn1.yallaboom.online/live/starz/chunks.m3u8?nimblesessionid=5785020');
+        await player.load('https://edge11.620097.ir.cdn.ir/hls2/b1.m3u8');
         console.log('تم تحميل الفيديو بنجاح');
 
         const tracks = player.getVariantTracks();
