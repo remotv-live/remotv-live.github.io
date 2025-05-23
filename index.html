@@ -7,8 +7,260 @@
   <link rel="icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/alnasseri-70c15.appspot.com/o/fs%2F1000032030.png?alt=media&token=0eef3c8f-6eba-4af6-bd33-da5a6870418b">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* جميع التنسيقات كما هي دون تعديل */
-    /* ... الكود موجود بالفعل كما أرسلته سابقاً ... */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #f2f2f2;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      background-color: white;
+      padding: 10px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      transform: translateX(5px);
+    }
+
+    header img {
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .player-container {
+      width: 95%;
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    #video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .quality-selector {
+      margin: 15px auto 5px;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      border: 2px solid #2CAF1D;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .quality-selector label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #2CAF1D;
+      margin-left: 10px;
+    }
+
+    .quality-selector select {
+      padding: 6px 12px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      background-color: #f9f9f9;
+      color: #333;
+      transition: border 0.3s ease;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .quality-selector select:focus {
+      border-color: #2CAF1D;
+    }
+
+    .quality-note {
+      font-size: 14px;
+      color: #d80000;
+      font-weight: 600;
+      margin: 10px auto 10px;
+      text-align: center;
+    }
+
+    .report-issue {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .report-issue a {
+      text-decoration: none;
+    }
+
+    .report-issue button {
+      background-color: #FF6347;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      font-size: 13px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .report-issue img {
+      height: 16px;
+    }
+
+    .download-section {
+      text-align: center;
+      margin: 30px auto;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .download-section h2 {
+      color: #2CAF1D;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .download-section h2 strong {
+      font-weight: 700;
+    }
+
+    .download-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .download-buttons a {
+      text-decoration: none;
+    }
+
+    .download-buttons button {
+      background-color: #179CDE;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .download-buttons a:last-child button {
+      background-color: #3DDC84;
+    }
+
+    .download-buttons img {
+      height: 20px;
+    }
+
+    .telegram-join {
+      display: flex;
+      justify-content: center;
+    }
+
+    .telegram-join a {
+      text-decoration: none;
+    }
+
+    .telegram-join button {
+      width: 100%;
+      background-color: white;
+      color: #179CDE;
+      border: 2px solid #179CDE;
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .telegram-join img {
+      height: 20px;
+    }
+
+    /* Dialog */
+    #telegramDialog {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    #telegramDialog .dialog-box {
+      background: white;
+      padding: 20px 25px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 300px;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    #telegramDialog h2 {
+      margin-top: 0;
+      color: #D9534F;
+    }
+
+    #telegramDialog p {
+      font-size: 15px;
+    }
+
+    #telegramDialog .dialog-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    #telegramDialog button {
+      padding: 6px 12px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    #telegramDialog .confirm {
+      background-color: #179CDE;
+      color: white;
+    }
+
+    #telegramDialog .cancel {
+      background-color: #ccc;
+      color: black;
+    }
   </style>
 </head>
 <body>
@@ -87,18 +339,10 @@
       const video = document.getElementById('video');
       player = new shaka.Player(video);
 
-      // إضافة Referrer
-      player.getNetworkingEngine().registerRequestFilter((type, request) => {
-        if (type === shaka.net.NetworkingEngine.RequestType.MANIFEST ||
-            type === shaka.net.NetworkingEngine.RequestType.SEGMENT) {
-          request.headers['Referer'] = 'https://fram.sport4all.online/';
-        }
-      });
-
       player.addEventListener('error', (e) => console.error('خطأ:', e.detail));
 
       try {
-        await player.load('https://cdn1.yallaboom.online/live/starz/chunks.m3u8?nimblesessionid=5785020');
+        await player.load('https://edge11.620097.ir.cdn.ir/hls2/b1.m3u8');
         console.log('تم تحميل الفيديو بنجاح');
 
         const tracks = player.getVariantTracks();
