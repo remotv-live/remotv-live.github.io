@@ -94,7 +94,6 @@
     .channel-selector {
       text-align: center;
       margin: 10px auto;
-      display: none;
     }
 
     .channel-selector button {
@@ -474,7 +473,6 @@
     function playChannel(streamUrl) {
       document.querySelector('.player-container').style.display = 'block';
       document.querySelector('.quality-selector').style.display = 'block';
-      document.querySelector('.channel-selector').style.display = 'block';
       hideChannelDialog();
       initPlayer(streamUrl);
     }
