@@ -56,47 +56,16 @@
       display: block;
     }
 
-    .quality-selector {
-      margin: 15px auto 5px;
-      padding: 10px 20px;
-      background-color: #ffffff;
-      border: 2px solid #2CAF1D;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      text-align: center;
-      font-family: 'Cairo', sans-serif;
-      display: none;
-    }
-
-    .quality-selector label {
-      font-size: 16px;
-      font-weight: 600;
-      color: #2CAF1D;
-      margin-left: 10px;
-    }
-
-    .quality-selector select {
-      padding: 6px 12px;
-      font-size: 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      outline: none;
-      background-color: #f9f9f9;
-      color: #333;
-      transition: border 0.3s ease;
-      font-family: 'Cairo', sans-serif;
-    }
-
-    .quality-selector select:focus {
-      border-color: #2CAF1D;
-    }
-
-    .channel-selector {
-      text-align: center;
+    .player-settings {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
       margin: 10px auto;
+      width: 95%;
+      max-width: 800px;
     }
 
-    .channel-selector button {
+    .player-settings button {
       background-color: #2CAF1D;
       color: white;
       border: none;
@@ -105,39 +74,55 @@
       border-radius: 6px;
       cursor: pointer;
       font-family: 'Cairo', sans-serif;
-    }
-
-    .report-issue {
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .report-issue a {
-      text-decoration: none;
-    }
-
-    .report-issue button {
-      background-color: #FF6347;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      font-size: 13px;
-      border-radius: 6px;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 6px;
-      cursor: pointer;
+    }
+
+    .player-settings button img {
+      height: 16px;
+    }
+
+    .quality-selector {
+      margin: 10px auto;
+      padding: 8px 16px;
+      background-color: #2CAF1D;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+      display: none;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .quality-selector label {
+      font-weight: 600;
+    }
+
+    .quality-selector select {
+      padding: 4px 8px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      background-color: rgba(255,255,255,0.2);
+      color: white;
+      outline: none;
       font-family: 'Cairo', sans-serif;
     }
 
-    .report-issue img {
-      height: 16px;
+    .quality-selector select option {
+      background-color: #2CAF1D;
+      color: white;
     }
 
     .download-section {
       text-align: center;
       margin: 30px auto;
       font-family: 'Cairo', sans-serif;
+      width: 95%;
+      max-width: 800px;
     }
 
     .download-section h2 {
@@ -185,20 +170,20 @@
       height: 20px;
     }
 
-    .telegram-join {
+    .contact-section {
       display: flex;
       justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+      width: 95%;
+      max-width: 800px;
     }
 
-    .telegram-join a {
+    .contact-section a {
       text-decoration: none;
     }
 
-    .telegram-join button {
-      width: 100%;
-      background-color: white;
-      color: #179CDE;
-      border: 2px solid #179CDE;
+    .contact-section button {
       padding: 8px 14px;
       font-size: 14px;
       border-radius: 6px;
@@ -208,10 +193,23 @@
       gap: 8px;
       cursor: pointer;
       font-family: 'Cairo', sans-serif;
+      flex: 1;
+      max-width: 300px;
+      border: none;
     }
 
-    .telegram-join img {
-      height: 20px;
+    .contact-section button.telegram {
+      background-color: #179CDE;
+      color: white;
+    }
+
+    .contact-section button.report {
+      background-color: #FF6347;
+      color: white;
+    }
+
+    .contact-section img {
+      height: 16px;
     }
 
     /* Channel Dialog */
@@ -365,12 +363,19 @@
     <video id="video" controls autoplay playsinline></video>
   </div>
 
-  <div class="channel-selector">
-    <button onclick="showChannelDialog()">تغيير القناة</button>
+  <div class="player-settings">
+    <button onclick="showChannelDialog()">
+      <img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="Channel Icon">
+      تغيير القناة
+    </button>
+    <button onclick="showQualitySelector()">
+      <img src="https://cdn-icons-png.flaticon.com/512/709/709586.png" alt="Quality Icon">
+      تغيير الجودة
+    </button>
   </div>
 
-  <div class="quality-selector">
-    <label for="quality">اختر الجودة:</label>
+  <div class="quality-selector" id="qualitySelector">
+    <label for="quality">الجودة:</label>
     <select id="quality">
       <option value="auto">تلقائي</option>
     </select>
@@ -392,19 +397,17 @@
         </button>
       </a>
     </div>
-    <div class="telegram-join">
-      <a href="https://t.me/remotvv" target="_blank">
-        <button>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Logo">
-          إنضم إلى قناتنا على تليجرام
-        </button>
-      </a>
-    </div>
   </div>
 
-  <div class="report-issue">
+  <div class="contact-section">
+    <a href="https://t.me/remotvv" target="_blank">
+      <button class="telegram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Logo">
+        قناتنا على تليجرام
+      </button>
+    </a>
     <a href="https://t.me/remo_dev_bot" target="_blank">
-      <button>
+      <button class="report">
         <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Report Icon">
         الإبلاغ عن مشكلة
       </button>
@@ -472,9 +475,13 @@
       document.getElementById('channelDialog').style.display = 'none';
     }
 
+    function showQualitySelector() {
+      const qualitySelector = document.getElementById('qualitySelector');
+      qualitySelector.style.display = qualitySelector.style.display === 'flex' ? 'none' : 'flex';
+    }
+
     function playChannel(streamUrl) {
       document.querySelector('.player-container').style.display = 'block';
-      document.querySelector('.quality-selector').style.display = 'block';
       hideChannelDialog();
       
       // إيقاف أي تشغيل سابق
@@ -552,6 +559,11 @@
         option.textContent = level.height + 'p';
         select.appendChild(option);
       });
+      
+      // إظهار محدد الجودة إذا كانت هناك خيارات متعددة
+      if (levels.length > 1) {
+        document.getElementById('qualitySelector').style.display = 'flex';
+      }
       
       // تحديث اختيار الجودة
       select.addEventListener('change', function() {
