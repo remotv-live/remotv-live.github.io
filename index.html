@@ -70,7 +70,7 @@
 
     .logo-container {
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
     }
 
     header img {
@@ -434,6 +434,7 @@
       display: inline-block;
       width: 60px;
       height: 30px;
+      margin-right: 10px;
     }
 
     .toggle-switch input {
@@ -475,23 +476,24 @@
     }
 
     .toggle-icon {
-      margin-left: 10px;
-      font-size: 18px;
+      margin-right: 3px;
+      margin-bottom: 2px;
+      font-size: 22px;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo-container">
-      <img src="https://i.imghippo.com/files/kfXw7179kyo.png" alt="remo TV Logo">
-    </div>
     <div class="dark-mode-toggle">
       <label class="toggle-switch">
         <input type="checkbox" id="darkModeToggle">
         <span class="toggle-slider"></span>
       </label>
       <span class="toggle-icon">🌓</span>
+    </div>
+    <div class="logo-container">
+      <img src="https://i.imghippo.com/files/kfXw7179kyo.png" alt="remo TV Logo">
     </div>
   </header>
 
@@ -760,7 +762,6 @@
         option.textContent = level.height + 'p';
         select.appendChild(option);
       });
-      
       select.addEventListener('change', function() {
         if (this.value === 'auto') {
           hls.currentLevel = -1;
@@ -772,3 +773,4 @@
   </script>
 </body>
 </html>
+      
