@@ -83,43 +83,9 @@
       height: 16px;
     }
 
-    .quality-selector {
-      margin: 10px auto;
-      padding: 8px 16px;
-      background-color: #2CAF1D;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 14px;
-      display: none;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .quality-selector label {
-      font-weight: 600;
-    }
-
-    .quality-selector select {
-      padding: 4px 8px;
-      font-size: 14px;
-      border: none;
-      border-radius: 4px;
-      background-color: rgba(255,255,255,0.2);
-      color: white;
-      outline: none;
-      font-family: 'Cairo', sans-serif;
-    }
-
-    .quality-selector select option {
-      background-color: #2CAF1D;
-      color: white;
-    }
-
     .download-section {
       text-align: center;
-      margin: 30px auto;
+      margin: 30px auto 15px;
       font-family: 'Cairo', sans-serif;
       width: 95%;
       max-width: 800px;
@@ -171,19 +137,36 @@
     }
 
     .contact-section {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
+      text-align: center;
+      margin: 0 auto 20px;
+      font-family: 'Cairo', sans-serif;
       width: 95%;
       max-width: 800px;
     }
 
-    .contact-section a {
+    .contact-section h2 {
+      color: #179CDE;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .contact-section h2 strong {
+      font-weight: 700;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact-buttons a {
       text-decoration: none;
     }
 
-    .contact-section button {
+    .contact-buttons button {
       padding: 8px 14px;
       font-size: 14px;
       border-radius: 6px;
@@ -198,17 +181,17 @@
       border: none;
     }
 
-    .contact-section button.telegram {
+    .contact-buttons button.telegram {
       background-color: #179CDE;
       color: white;
     }
 
-    .contact-section button.report {
+    .contact-buttons button.report {
       background-color: #FF6347;
       color: white;
     }
 
-    .contact-section img {
+    .contact-buttons img {
       height: 16px;
     }
 
@@ -292,6 +275,47 @@
       width: 100%;
     }
 
+    /* Quality Dialog */
+    #qualityDialog {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    #qualityDialog .dialog-box {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 95%;
+      width: 380px;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    #qualityDialog h2 {
+      margin-top: 0;
+      color: #2CAF1D;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    #qualityDialog select {
+      padding: 8px 12px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      width: 100%;
+      margin-bottom: 15px;
+      font-family: 'Cairo', sans-serif;
+    }
+
     /* Telegram Dialog */
     #telegramDialog {
       position: fixed;
@@ -368,17 +392,10 @@
       <img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="Channel Icon">
       تغيير القناة
     </button>
-    <button onclick="showQualitySelector()">
+    <button onclick="showQualityDialog()">
       <img src="https://cdn-icons-png.flaticon.com/512/709/709586.png" alt="Quality Icon">
       تغيير الجودة
     </button>
-  </div>
-
-  <div class="quality-selector" id="qualitySelector">
-    <label for="quality">الجودة:</label>
-    <select id="quality">
-      <option value="auto">تلقائي</option>
-    </select>
   </div>
 
   <div class="download-section">
@@ -400,18 +417,21 @@
   </div>
 
   <div class="contact-section">
-    <a href="https://t.me/remotvv" target="_blank">
-      <button class="telegram">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Logo">
-        قناتنا على تليجرام
-      </button>
-    </a>
-    <a href="https://t.me/remo_dev_bot" target="_blank">
-      <button class="report">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Report Icon">
-        الإبلاغ عن مشكلة
-      </button>
-    </a>
+    <h2><strong>تواصل معنا</strong></h2>
+    <div class="contact-buttons">
+      <a href="https://t.me/remotvv" target="_blank">
+        <button class="telegram">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Logo">
+          قناتنا على تليجرام
+        </button>
+      </a>
+      <a href="https://t.me/remo_dev_bot" target="_blank">
+        <button class="report">
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Report Icon">
+          الإبلاغ عن مشكلة
+        </button>
+      </a>
+    </div>
   </div>
 
   <!-- Channel Dialog -->
@@ -449,6 +469,17 @@
     </div>
   </div>
 
+  <!-- Quality Dialog -->
+  <div id="qualityDialog">
+    <div class="dialog-box">
+      <h2>اختر جودة البث</h2>
+      <select id="quality">
+        <option value="auto">تلقائي</option>
+      </select>
+      <button class="close-dialog" onclick="hideQualityDialog()">إغلاق</button>
+    </div>
+  </div>
+
   <!-- Telegram Dialog -->
   <div id="telegramDialog">
     <div class="dialog-box">
@@ -475,9 +506,12 @@
       document.getElementById('channelDialog').style.display = 'none';
     }
 
-    function showQualitySelector() {
-      const qualitySelector = document.getElementById('qualitySelector');
-      qualitySelector.style.display = qualitySelector.style.display === 'flex' ? 'none' : 'flex';
+    function showQualityDialog() {
+      document.getElementById('qualityDialog').style.display = 'flex';
+    }
+
+    function hideQualityDialog() {
+      document.getElementById('qualityDialog').style.display = 'none';
     }
 
     function playChannel(streamUrl) {
@@ -559,11 +593,6 @@
         option.textContent = level.height + 'p';
         select.appendChild(option);
       });
-      
-      // إظهار محدد الجودة إذا كانت هناك خيارات متعددة
-      if (levels.length > 1) {
-        document.getElementById('qualitySelector').style.display = 'flex';
-      }
       
       // تحديث اختيار الجودة
       select.addEventListener('change', function() {
