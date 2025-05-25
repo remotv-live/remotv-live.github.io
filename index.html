@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7QK3K5D59"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K7QK3K5D59');
+  </script>
+  <title>remo TV ريمو تيفي</title>
+  <link rel="icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/alnasseri-70c15.appspot.com/o/fs%2F1000032030.png?alt=media&token=0eef3c8f-6eba-4af6-bd33-da5a6870418b">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f2f2f2;
+      --text-color: #222;
+      --header-bg: white;
+      --header-shadow: rgba(0,0,0,0.1);
+      --player-bg: white;
+      --player-shadow: rgba(0,0,0,0.1);
+      --primary-btn: #2CAF1D;
+      --download-btn: #179CDE;
+      --download-btn-alt: #3DDC84;
+      --contact-btn: #179CDE;
+      --report-btn: #FF6347;
+      --dialog-bg: white;
+      --channel-btn: #f5f5f5;
+      --channel-btn-hover: #e0e0e0;
+      --close-btn: #FF6347;
+    }
+
+    .dark-mode {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --header-bg: #1e1e1e;
+      --header-shadow: rgba(0,0,0,0.3);
+      --player-bg: #1e1e1e;
+      --player-shadow: rgba(0,0,0,0.3);
+      --primary-btn: #1a8c0f;
+      --download-btn: #0d6b99;
+      --download-btn-alt: #2aa86b;
+      --contact-btn: #0d6b99;
+      --report-btn: #cc4c38;
+      --dialog-bg: #2d2d2d;
+      --channel-btn: #333;
+      --channel-btn-hover: #444;
+      --close-btn: #cc4c38;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      width: 100%;
+      background-color: var(--header-bg);
+      padding: 10px 0;
+      box-shadow: 0 2px 8px var(--header-shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    header img {
+      height: 50px;
+      object-fit: contain;
+    }
+
+    .player-container {
+      width: 95%;
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: var(--player-bg);
+      border-radius: 15px;
+      box-shadow: 0 4px 12px var(--player-shadow);
+      overflow: hidden;
+      display: none;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    #video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .external-player {
+      width: 95%;
+      max-width: 800px;
+      margin: 20px auto;
+      display: none;
+    }
+
+    .player-settings {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px auto;
+      width: 95%;
+      max-width: 800px;
+    }
+
+    .player-settings button {
+      background-color: var(--primary-btn);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .player-settings button img {
+      height: 16px;
+    }
+
+    .download-section {
+      text-align: center;
+      margin: 30px auto 15px;
+      font-family: 'Cairo', sans-serif;
+      width: 95%;
+      max-width: 800px;
+    }
+
+    .download-section h2 {
+      color: var(--primary-btn);
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .download-section h2 strong {
+      font-weight: 700;
+    }
+
+    .download-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .download-buttons a {
+      text-decoration: none;
+    }
+
+    .download-buttons button {
+      background-color: var(--download-btn);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      transition: background-color 0.3s;
+    }
+
+    .download-buttons a:last-child button {
+      background-color: var(--download-btn-alt);
+    }
+
+    .download-buttons img {
+      height: 20px;
+    }
+
+    .contact-section {
+      text-align: center;
+      margin: 0 auto 20px;
+      font-family: 'Cairo', sans-serif;
+      width: 95%;
+      max-width: 800px;
+    }
+
+    .contact-section h2 {
+      color: var(--contact-btn);
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .contact-section h2 strong {
+      font-weight: 700;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact-buttons a {
+      text-decoration: none;
+    }
+
+    .contact-buttons button {
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      flex: 1;
+      max-width: 300px;
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    .contact-buttons button.telegram {
+      background-color: var(--contact-btn);
+      color: white;
+    }
+
+    .contact-buttons button.report {
+      background-color: var(--report-btn);
+      color: white;
+    }
+
+    .contact-buttons img {
+      height: 16px;
+    }
+
+    #channelDialog {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    #channelDialog .dialog-box {
+      background: var(--dialog-bg);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 95%;
+      width: 380px;
+      font-family: 'Cairo', sans-serif;
+      max-height: 90vh;
+      overflow-y: auto;
+      transition: background-color 0.3s;
+    }
+
+    #channelDialog h2 {
+      margin-top: 0;
+      color: var(--primary-btn);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .channel-group {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .channel-group h3 {
+      color: var(--contact-btn);
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .channels-row {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-btn) var(--channel-btn);
+    }
+
+    .channels-row::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .channels-row::-webkit-scrollbar-track {
+      background: var(--channel-btn);
+      border-radius: 3px;
+    }
+
+    .channels-row::-webkit-scrollbar-thumb {
+      background-color: var(--primary-btn);
+      border-radius: 3px;
+    }
+
+    .channel-btn {
+      padding: 6px 10px;
+      background-color: var(--channel-btn);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      font-size: 13px;
+      transition: background-color 0.3s;
+      min-width: 80px;
+      color: var(--text-color);
+      flex-shrink: 0;
+    }
+
+    .channel-btn:hover {
+      background-color: var(--channel-btn-hover);
+    }
+
+    .close-dialog {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: var(--close-btn);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    #qualityDialog {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    #qualityDialog .dialog-box {
+      background: var(--dialog-bg);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 95%;
+      width: 380px;
+      font-family: 'Cairo', sans-serif;
+      transition: background-color 0.3s;
+    }
+
+    #qualityDialog h2 {
+      margin-top: 0;
+      color: var(--primary-btn);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    #qualityDialog select {
+      padding: 8px 12px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      width: 100%;
+      margin-bottom: 15px;
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--dialog-bg);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    #telegramDialog {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    #telegramDialog .dialog-box {
+      background: var(--dialog-bg);
+      padding: 20px 25px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 300px;
+      font-family: 'Cairo', sans-serif;
+      transition: background-color 0.3s;
+    }
+
+    #telegramDialog h2 {
+      margin-top: 0;
+      color: var(--report-btn);
+    }
+
+    #telegramDialog p {
+      font-size: 15px;
+      color: var(--text-color);
+    }
+
+    #telegramDialog .dialog-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    #telegramDialog button {
+      padding: 6px 12px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      transition: background-color 0.3s;
+    }
+
+    #telegramDialog .confirm {
+      background-color: var(--contact-btn);
+      color: white;
+    }
+
+    #telegramDialog .cancel {
+      background-color: #ccc;
+      color: black;
+    }
+
+    .dark-mode-toggle {
+      display: flex;
+      align-items: center;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+      margin-right: 10px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+      background-color: var(--primary-btn);
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(30px);
+    }
+
+    .toggle-icon {
+      margin-right: 3px;
+      margin-bottom: 2px;
+      font-size: 22px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="dark-mode-toggle">
+      <label class="toggle-switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="toggle-slider"></span>
+      </label>
+      <span class="toggle-icon">🌓</span>
+    </div>
+    <div class="logo-container">
+      <img src="https://i.imghippo.com/files/kfXw7179kyo.png" alt="remo TV Logo">
+    </div>
+  </header>
+
+  <div class="player-container">
+    <video id="video" controls autoplay playsinline></video>
+  </div>
+
+  <div class="external-player" id="externalPlayer">
+    <iframe id="externalPlayerFrame" allowfullscreen='true' frameborder='0' height='500px' scrolling='1' width='100%'></iframe>
+  </div>
+
+  <div class="player-settings">
+    <button onclick="showChannelDialog()">
+      <img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="Channel Icon">
+      تغيير القناة
+    </button>
+    <button onclick="showQualityDialog()">
+      <img src="https://cdn-icons-png.flaticon.com/512/709/709586.png" alt="Quality Icon">
+      تغيير الجودة
+    </button>
+  </div>
+
+  <div class="download-section">
+    <h2><strong>حمل التطبيق الآن</strong></h2>
+    <div class="download-buttons">
+      <a href="https://www.mediafire.com/file/hsnp64lq06cm0zw/remo_TV_v3.91.apk/file" target="_blank">
+        <button>
+          <img src="https://i.pinimg.com/474x/b9/55/e9/b955e929305c5934632d9ecfab2f5b30.jpg" alt="Mediafire Logo">
+          ميديا فاير
+        </button>
+      </a>
+      <a href="https://apkpure.com/remo-tv-player/com.remo.player/download" target="_blank">
+        <button>
+          <img src="https://cdn-1.webcatalog.io/catalog/apkpure/apkpure-icon-filled-256.png?v=1714773022463" alt="APKPure Logo">
+          APKPure
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2><strong>تواصل معنا</strong></h2>
+    <div class="contact-buttons">
+      <a href="https://t.me/remotvv" target="_blank">
+        <button class="telegram">
+          <img src="https://upload.wikimedia.org/commons/8/82/Telegram_logo.svg" alt="Telegram Logo">
+          قناتنا على تليجرام
+        </button>
+      </a>
+      <a href="https://t.me/remo_dev_bot" target="_blank">
+        <button class="report">
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Report Icon">
+          الإبلاغ عن مشكلة
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <div id="channelDialog">
+    <div class="dialog-box">
+      <h2>إختر القناة</h2>
+      
+      <!-- سيتم إضافة القنوات ديناميكيًا عبر JavaScript -->
+      <div id="channelsContainer"></div>
+      
+      <button class="close-dialog" onclick="hideChannelDialog()">إغلاق</button>
+    </div>
+  </div>
+
+  <div id="qualityDialog">
+    <div class="dialog-box">
+      <h2>اختر جودة البث</h2>
+      <select id="quality">
+        <option value="auto">تلقائي</option>
+      </select>
+      <button class="close-dialog" onclick="hideQualityDialog()">إغلاق</button>
+    </div>
+  </div>
+
+  <div id="telegramDialog">
+    <div class="dialog-box">
+      <h2>تنبيه</h2>
+      <p>إشترك بقناتنا على التلجرام لمتابعة أخبار التطبيق والموقع</p>
+      <div class="dialog-actions">
+        <button class="confirm" onclick="window.open('https://t.me/remotvv', '_blank'); hideTelegramDialog();">موافق</button>
+        <button class="cancel" onclick="hideTelegramDialog()">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    let hls;
+    let video = document.getElementById('video');
+    let externalPlayerFrame = document.getElementById('externalPlayerFrame');
+    
+    // قائمة القنوات مع روابطها
+    const channels = {
+      "بث خارجي": [
+        { name: "beIN Sport 1", url: "external:https://dd.alkoora.live/albaplayer/on-time-sport-1/" },
+        { name: "beIN Sport 2", url: "external:https://dd.alkoora.live/albaplayer/on-time-sport-2/" },
+        { name: "beIN Sport 3", url: "external:https://dd.alkoora.live/albaplayer/on-time-sport-3/" },
+        { name: "beIN Sport 4", url: "" },
+        { name: "beIN Sport 5", url: "" },
+        { name: "beIN Sport 6", url: "" }
+      ],
+      " بين سبورت - beIN Sports": [
+        { name: "beIN Sport 1", url: "https://cma.620097.ir.cdn.ir/hls2/b1.m3u8" },
+        { name: "beIN Sport 2", url: "https://top1-cdnnew.newkso.ru/top1-cdn/aPIH0OWym5/mono.m3u8" },
+        { name: "beIN Sport 3", url: "https://ninja2.kora-news.site/hls/p3.m3u8" },
+        { name: "4", url: "" }, 
+        { name: "5", url: "" }, 
+        { name: "6", url: "" },
+        { name: "7", url: "" }, 
+        { name: "8", url: "" }, 
+        { name: "9", url: "" }, 
+        { name: "Xtra 1", url: "" },
+        { name: "Xtra 2", url: "" }, 
+        { name: "Xtra 3", url: "" }, 
+        { name: "Xtra 4", url: "" }, 
+        { name: "Xtra 5", url: "" }, 
+        { name: "Xtra 6", url: "" }, 
+        { name: "Xtra 7", url: "" }, 
+        { name: "Xtra 8", url: "" }, 
+        { name: "Xtra 9", url: "" } 
+      ],
+      "القنوات الرياضية السعودية - SSC": [
+        { name: "SSC 1", url: "https://cma.620097.ir.cdn.ir/hls2/ssc1.m3u8" },
+        { name: "2", url: "" },
+        { name: "3", url: "" },
+        { name: "4", url: "" },
+        { name: "5", url: "" },
+        { name: "Xtra 1", url: "" },
+        { name: "Xtra 2", url: "" },
+        { name: "Xtra 3", url: "" }
+      ],
+      "أبو ظبي الرياضية - AD SPORTS": [
+        { name: "AD SPORTS 1", url: "" },
+        { name: "AD SPORTS 2", url: "" },
+        { name: "AD SPORTS PREMIUM 1", url: "https://top1-cdnnew.newkso.ru/top1-cdn/N0nZoHOXsC/mono.m3u8" },
+        { name: "PREMIUM 2", url: "" }
+      ],
+      "الرياضات العربية - Arab Sports": [
+        { "name": "العراقية الرياضية", "url": "" },
+        { "name": "عمان الرياضية", "url": "https://partneta.cdn.mgmlcdn.com/omsport/smil:omsport.stream.smil/chunklist.m3u8" },
+        { "name": "الكويت الرياضية 1", "url": "https://kwtspta.cdn.mangomolo.com/sp/smil:sp.stream.smil/chunklist.m3u8" },
+        { "name": "الكويت الرياضية 2", "url": "https://kwtsplta.cdn.mangomolo.com/spl/smil:spl.stream.smil/chunklist.m3u8" },
+        { "name": "دبي الرياضية 1", "url": "https://dmidspta.cdn.mgmlcdn.com/dubaisports/smil:dubaisports.stream.smil/chunklist.m3u8" },
+        { "name": "دبي الرياضية 2", "url": "https://dmitwlvvll.cdn.mgmlcdn.com/dubaisportshd/smil:dubaisportshd.smil/chunklist.m3u8" },
+        { "name": "دبي الرياضية 3", "url": "https://dmitwlvvll.cdn.mgmlcdn.com/dubaisportshd5/smil:dubaisportshd5.smil/chunklist.m3u8" },
+        { "name": "الشارقة الرياضية", "url": "https://svs.itworkscdn.net/smc4sportslive/smc4.smil/playlist.m3u8" },
+        { "name": "ياس الرياضية", "url": "" },
+        { "name": "البحرين الرياضية 1", "url": "https://5c7b683162943.streamlock.net/live/ngrp:sportsone_all/playlist.m3u8" },
+        { "name": "البحرين الرياضية 2", "url": "https://5c7b683162943.streamlock.net/live/ngrp:bahrainsportstwo_all/playlist.m3u8" },
+        { "name": "Arryadia", "url": "https://cdn.live.easybroadcast.io/abr_corp/73_arryadia_k2tgcj0/playlist_dvr.m3u8" },
+      ],
+    };
+
+    function stopAllPlayers() {
+      // إيقاف مشغل الفيديو الأصلي
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+        video.removeAttribute('src');
+        video.load();
+      }
+      
+      // إيقاف مشغل HLS إذا كان موجودًا
+      if (hls) {
+        hls.destroy();
+        hls = null;
+      }
+      
+      // إيقاف مشغل iframe الخارجي
+      if (externalPlayerFrame) {
+        externalPlayerFrame.src = '';
+      }
+    }
+
+    function renderChannels() {
+      const container = document.getElementById('channelsContainer');
+      container.innerHTML = '';
+      
+      for (const [groupName, channelList] of Object.entries(channels)) {
+        // تصفية القنوات لاستبعاد تلك التي ليس لها روابط
+        const validChannels = channelList.filter(channel => channel.url && channel.url.trim() !== '');
+        
+        // إذا لم يكن هناك قنوات صالحة في هذه المجموعة، تخطيها
+        if (validChannels.length === 0) continue;
+        
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'channel-group';
+        
+        const title = document.createElement('h3');
+        title.textContent = groupName;
+        groupDiv.appendChild(title);
+        
+        const rowDiv = document.createElement('div');
+        rowDiv.className = 'channels-row';
+        
+        validChannels.forEach(channel => {
+          const btn = document.createElement('button');
+          btn.className = 'channel-btn';
+          btn.textContent = channel.name;
+          btn.onclick = () => playChannel(channel.url);
+          rowDiv.appendChild(btn);
+        });
+        
+        groupDiv.appendChild(rowDiv);
+        container.appendChild(groupDiv);
+      }
+    }
+
+    function checkDarkModePreference() {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const darkModeToggle = document.getElementById('darkModeToggle');
+      
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        enableDarkMode();
+        darkModeToggle.checked = true;
+      } else if (localStorage.getItem('darkMode') === 'disabled') {
+        disableDarkMode();
+        darkModeToggle.checked = false;
+      } else if (prefersDark) {
+        enableDarkMode();
+        darkModeToggle.checked = true;
+      } else {
+        disableDarkMode();
+        darkModeToggle.checked = false;
+      }
+    }
+
+    function enableDarkMode() {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('darkMode', 'enabled');
+    }
+
+    function disableDarkMode() {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('darkMode', 'disabled');
+    }
+
+    function showTelegramDialog() {
+      document.getElementById('telegramDialog').style.display = 'flex';
+    }
+
+    function hideTelegramDialog() {
+      document.getElementById('telegramDialog').style.display = 'none';
+      showChannelDialog();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      checkDarkModePreference();
+      renderChannels(); // عرض القنوات عند تحميل الصفحة
+      showTelegramDialog();
+      
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (localStorage.getItem('darkMode') === null) {
+          if (e.matches) {
+            enableDarkMode();
+            document.getElementById('darkModeToggle').checked = true;
+          } else {
+            disableDarkMode();
+            document.getElementById('darkModeToggle').checked = false;
+          }
+        }
+      });
+      
+      document.getElementById('darkModeToggle').addEventListener('change', function() {
+        if (this.checked) {
+          enableDarkMode();
+        } else {
+          disableDarkMode();
+        }
+      });
+    });
+
+    function showChannelDialog() {
+      document.getElementById('channelDialog').style.display = 'flex';
+    }
+
+    function hideChannelDialog() {
+      document.getElementById('channelDialog').style.display = 'none';
+    }
+
+    function showQualityDialog() {
+      document.getElementById('qualityDialog').style.display = 'flex';
+    }
+
+    function hideQualityDialog() {
+      document.getElementById('qualityDialog').style.display = 'none';
+    }
+
+    function playChannel(streamUrl) {
+      // إيقاف جميع المشغلات أولاً
+      stopAllPlayers();
+      
+      hideChannelDialog();
+      
+      if (streamUrl.startsWith('external:')) {
+        // تشغيل البث الخارجي
+        const externalUrl = streamUrl.replace('external:', '');
+        const externalPlayer = document.querySelector('.external-player');
+        
+        externalPlayerFrame.src = externalUrl;
+        externalPlayer.style.display = 'block';
+        document.querySelector('.player-container').style.display = 'none';
+      } else {
+        // تشغيل البث العادي
+        document.querySelector('.player-container').style.display = 'block';
+        document.querySelector('.external-player').style.display = 'none';
+        
+        initPlayer(streamUrl);
+      }
+    }
+
+    function initPlayer(streamUrl) {
+      if (Hls.isSupported()) {
+        hls = new Hls({
+          maxMaxBufferLength: 60,
+          maxBufferSize: 60 * 1000 * 1000,
+          maxBufferLength: 30,
+          lowLatencyMode: false,
+          enableWorker: true,
+          startLevel: -1,
+          abrEwmaDefaultEstimate: 500000,
+          abrBandWidthFactor: 0.95,
+          abrBandWidthUpFactor: 0.7,
+          abrMaxWithRealBitrate: true
+        });
+        
+        hls.loadSource(streamUrl);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
+          updateQualitySelector(data.levels);
+        });
+        
+        hls.on(Hls.Events.ERROR, function(event, data) {
+          if (data.fatal) {
+            switch(data.type) {
+              case Hls.ErrorTypes.NETWORK_ERROR:
+                console.error('خطأ في الشبكة:', data.details);
+                hls.startLoad();
+                break;
+              case Hls.ErrorTypes.MEDIA_ERROR:
+                console.error('خطأ في الوسائط:', data.details);
+                hls.recoverMediaError();
+                break;
+              default:
+                console.error('خطأ غير معروف:', data);
+                initPlayer(streamUrl);
+                break;
+            }
+          }
+        });
+        
+        video.play().catch(e => console.log('خطأ في التشغيل التلقائي:', e));
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = streamUrl;
+        video.addEventListener('loadedmetadata', function() {
+          video.play();
+        });
+      } else {
+        alert('المتصفح لا يدعم تشغيل هذا النوع من الفيديو');
+      }
+    }
+
+    function updateQualitySelector(levels) {
+      const select = document.getElementById('quality');
+      
+      while (select.options.length > 1) {
+        select.remove(1);
+      }
+      
+      levels.forEach((level, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = level.height + 'p';
+        select.appendChild(option);
+      });
+      select.addEventListener('change', function() {
+        if (this.value === 'auto') {
+          hls.currentLevel = -1;
+        } else {
+          hls.currentLevel = parseInt(this.value);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
