@@ -1,534 +1,424 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7QK3K5D59"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-K7QK3K5D59');
-  </script>
-  <title>remo TV ريمو تيفي</title>
-  <link rel="icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/alnasseri-70c15.appspot.com/o/fs%2F1000032030.png?alt=media&token=0eef3c8f-6eba-4af6-bd33-da5a6870418b">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #f2f2f2;
-      --text-color: #222;
-      --header-bg: white;
-      --header-shadow: rgba(0,0,0,0.1);
-      --player-bg: white;
-      --player-shadow: rgba(0,0,0,0.1);
-      --primary-btn: #2CAF1D;
-      --download-btn: #179CDE;
-      --download-btn-alt: #3DDC84;
-      --contact-btn: #179CDE;
-      --report-btn: #FF6347;
-      --dialog-bg: white;
-      --channel-btn: #f5f5f5;
-      --channel-btn-hover: #e0e0e0;
-      --close-btn: #FF6347;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>remo TV ريمو تيفي</title>
+    <link rel="icon" type="image/png" href="https://up6.cc/2025/07/175240890301591.png">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+        
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #FFC107;
+            --dark-color: #2E7D32;
+            --light-color: #F1F8E9;
+            --text-color: #333;
+            --player-bg: white;
+            --player-shadow: rgba(0,0,0,0.1);
+            --dialog-bg: white;
+            --channel-btn: #f5f5f5;
+            --channel-btn-hover: #e0e0e0;
+            --close-btn: #FF6347;
+            --download-btn: #179CDE;
+        }
 
-    .dark-mode {
-      --bg-color: #121212;
-      --text-color: #e0e0e0;
-      --header-bg: #1e1e1e;
-      --header-shadow: rgba(0,0,0,0.3);
-      --player-bg: #1e1e1e;
-      --player-shadow: rgba(0,0,0,0.3);
-      --primary-btn: #1a8c0f;
-      --download-btn: #0d6b99;
-      --download-btn-alt: #2aa86b;
-      --contact-btn: #0d6b99;
-      --report-btn: #cc4c38;
-      --dialog-bg: #2d2d2d;
-      --channel-btn: #333;
-      --channel-btn-hover: #444;
-      --close-btn: #cc4c38;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Cairo', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow-x: hidden;
-      transition: background-color 0.3s, color 0.3s;
-    }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, var(--light-color) 0%, #ffffff 100%);
+        }
 
-    header {
-      width: 100%;
-      background-color: var(--header-bg);
-      padding: 10px 0;
-      box-shadow: 0 2px 8px var(--header-shadow);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      transition: background-color 0.3s, box-shadow 0.3s;
-    }
+        header {
+            width: 100%;
+            background-color: white;
+            padding: 10px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+        }
 
-    .logo-container {
-      display: flex;
-      justify-content: flex-end;
-    }
+        .logo-container {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        }
 
-    header img {
-      height: 50px;
-      object-fit: contain;
-    }
+       .logo-container img {
+        height: auto;
+        max-height: 50px;
+        width: auto;
+        
+        object-fit: contain;
+        }
 
-    .player-container {
-      width: 95%;
-      max-width: 800px;
-      margin: 20px auto;
-      background-color: var(--player-bg);
-      border-radius: 15px;
-      box-shadow: 0 4px 12px var(--player-shadow);
-      overflow: hidden;
-      display: none;
-      transition: background-color 0.3s, box-shadow 0.3s;
-    }
+        header img {
+            height: 50px;
+            width: 100px
+            object-fit: contain;
+        }
 
-    #video {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+        .player-container {
+            width: 95%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: var(--player-bg);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px var(--player-shadow);
+            overflow: hidden;
+            display: none;
+        }
 
-    .external-player {
-      width: 95%;
-      max-width: 800px;
-      margin: 20px auto;
-      display: none;
-    }
+        #video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-    .player-settings {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 10px auto;
-      width: 95%;
-      max-width: 800px;
-    }
+        .external-player {
+            width: 95%;
+            max-width: 800px;
+            margin: 20px auto;
+            display: none;
+        }
 
-    .player-settings button {
-      background-color: var(--primary-btn);
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      font-size: 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-family: 'Cairo', sans-serif;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: background-color 0.3s;
-    }
+        .player-settings {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px auto;
+            width: 95%;
+            max-width: 800px;
+        }
 
-    .player-settings button img {
-      height: 16px;
-    }
+        .player-settings button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
 
-    .download-section {
-      text-align: center;
-      margin: 30px auto 15px;
-      font-family: 'Cairo', sans-serif;
-      width: 95%;
-      max-width: 800px;
-    }
+        .player-settings button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
 
-    .download-section h2 {
-      color: var(--primary-btn);
-      font-weight: bold;
-      font-size: 16px;
-      margin-bottom: 15px;
-    }
+        .player-settings button:active {
+            transform: translateY(1px);
+        }
 
-    .download-section h2 strong {
-      font-weight: 700;
-    }
+        .download-btn {
+            background-color: var(--download-btn);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            
+            text-decoration: none;
+            width: 200px;
+        }
 
-    .download-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 15px;
-    }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
 
-    .download-buttons a {
-      text-decoration: none;
-    }
+        #channelDialog {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
 
-    .download-buttons button {
-      background-color: var(--download-btn);
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      font-size: 14px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      font-family: 'Cairo', sans-serif;
-      transition: background-color 0.3s;
-    }
+        #channelDialog .dialog-box {
+            background: var(--dialog-bg);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 95%;
+            width: 380px;
+            font-family: 'Tajawal', sans-serif;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
 
-    .download-buttons a:last-child button {
-      background-color: var(--download-btn-alt);
-    }
+        #channelDialog h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
 
-    .download-buttons img {
-      height: 20px;
-    }
+        .channel-group {
+            margin-bottom: 15px;
+            text-align: center;
+        }
 
-    .contact-section {
-      text-align: center;
-      margin: 0 auto 20px;
-      font-family: 'Cairo', sans-serif;
-      width: 95%;
-      max-width: 800px;
-    }
+        .channel-group h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
 
-    .contact-section h2 {
-      color: var(--contact-btn);
-      font-weight: bold;
-      font-size: 16px;
-      margin-bottom: 15px;
-    }
+        .channels-row {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 8px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--channel-btn);
+        }
 
-    .contact-section h2 strong {
-      font-weight: 700;
-    }
+        .channels-row::-webkit-scrollbar {
+            height: 6px;
+        }
 
-    .contact-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+        .channels-row::-webkit-scrollbar-track {
+            background: var(--channel-btn);
+            border-radius: 3px;
+        }
 
-    .contact-buttons a {
-      text-decoration: none;
-    }
+        .channels-row::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
 
-    .contact-buttons button {
-      padding: 8px 14px;
-      font-size: 14px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-      font-family: 'Cairo', sans-serif;
-      flex: 1;
-      max-width: 300px;
-      border: none;
-      transition: background-color 0.3s;
-    }
+        .channel-btn {
+            padding: 8px 12px;
+            background-color: var(--channel-btn);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            min-width: 80px;
+            color: var(--text-color);
+            flex-shrink: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-    .contact-buttons button.telegram {
-      background-color: var(--contact-btn);
-      color: white;
-    }
+        .channel-btn:hover {
+            background-color: var(--channel-btn-hover);
+            transform: translateY(-2px);
+        }
 
-    .contact-buttons button.report {
-      background-color: var(--report-btn);
-      color: white;
-    }
+        .close-dialog {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: var(--close-btn);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
 
-    .contact-buttons img {
-      height: 16px;
-    }
+        .close-dialog:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
 
-    #channelDialog {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      background-color: rgba(0,0,0,0.6);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
+        #qualityDialog {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
 
-    #channelDialog .dialog-box {
-      background: var(--dialog-bg);
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      max-width: 95%;
-      width: 380px;
-      font-family: 'Cairo', sans-serif;
-      max-height: 90vh;
-      overflow-y: auto;
-      transition: background-color 0.3s;
-    }
+        #qualityDialog .dialog-box {
+            background: var(--dialog-bg);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 95%;
+            width: 380px;
+            font-family: 'Tajawal', sans-serif;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
 
-    #channelDialog h2 {
-      margin-top: 0;
-      color: var(--primary-btn);
-      text-align: center;
-      margin-bottom: 15px;
-    }
+        #qualityDialog h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
 
-    .channel-group {
-      margin-bottom: 15px;
-      text-align: center;
-    }
+        #qualityDialog select {
+            padding: 10px 15px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            width: 100%;
+            margin-bottom: 15px;
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--dialog-bg);
+            color: var(--text-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-    .channel-group h3 {
-      color: var(--contact-btn);
-      margin-bottom: 8px;
-      font-size: 16px;
-    }
+        .logo {
+            width: 180px;
+            height: 180px;
+            margin: 20px auto;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 0px solid var(--secondary-color);
+            overflow: hidden;
+            animation: float 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
 
-    .channels-row {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      gap: 8px;
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--primary-btn) var(--channel-btn);
-    }
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
 
-    .channels-row::-webkit-scrollbar {
-      height: 6px;
-    }
+        .logo img {
+            width: 80%;
+            height: auto;
+            object-fit: contain;
+        }
 
-    .channels-row::-webkit-scrollbar-track {
-      background: var(--channel-btn);
-      border-radius: 3px;
-    }
+        h1 {
+            color: var(--dark-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 900;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
 
-    .channels-row::-webkit-scrollbar-thumb {
-      background-color: var(--primary-btn);
-      border-radius: 3px;
-    }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.6;
+        }
 
-    .channel-btn {
-      padding: 6px 10px;
-      background-color: var(--channel-btn);
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-family: 'Cairo', sans-serif;
-      font-size: 13px;
-      transition: background-color 0.3s;
-      min-width: 80px;
-      color: var(--text-color);
-      flex-shrink: 0;
-    }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
 
-    .channel-btn:hover {
-      background-color: var(--channel-btn-hover);
-    }
-
-    .close-dialog {
-      margin-top: 10px;
-      padding: 8px 16px;
-      background-color: var(--close-btn);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-family: 'Cairo', sans-serif;
-      width: 100%;
-      transition: background-color 0.3s;
-    }
-
-    #qualityDialog {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      background-color: rgba(0,0,0,0.6);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-
-    #qualityDialog .dialog-box {
-      background: var(--dialog-bg);
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      max-width: 95%;
-      width: 380px;
-      font-family: 'Cairo', sans-serif;
-      transition: background-color 0.3s;
-    }
-
-    #qualityDialog h2 {
-      margin-top: 0;
-      color: var(--primary-btn);
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    #qualityDialog select {
-      padding: 8px 12px;
-      font-size: 14px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      width: 100%;
-      margin-bottom: 15px;
-      font-family: 'Cairo', sans-serif;
-      background-color: var(--dialog-bg);
-      color: var(--text-color);
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    #telegramDialog {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      background-color: rgba(0,0,0,0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-    }
-
-    #telegramDialog .dialog-box {
-      background: var(--dialog-bg);
-      padding: 20px 25px;
-      border-radius: 10px;
-      text-align: center;
-      max-width: 300px;
-      font-family: 'Cairo', sans-serif;
-      transition: background-color 0.3s;
-    }
-
-    #telegramDialog h2 {
-      margin-top: 0;
-      color: var(--report-btn);
-    }
-
-    #telegramDialog p {
-      font-size: 15px;
-      color: var(--text-color);
-    }
-
-    #telegramDialog .dialog-actions {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    #telegramDialog button {
-      padding: 6px 12px;
-      font-size: 14px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-family: 'Cairo', sans-serif;
-      transition: background-color 0.3s;
-    }
-
-    #telegramDialog .confirm {
-      background-color: var(--contact-btn);
-      color: white;
-    }
-
-    #telegramDialog .cancel {
-      background-color: #ccc;
-      color: black;
-    }
-
-    .dark-mode-toggle {
-      display: flex;
-      align-items: center;
-    }
-
-    .toggle-switch {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 30px;
-      margin-right: 10px;
-    }
-
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .toggle-slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 34px;
-    }
-
-    .toggle-slider:before {
-      position: absolute;
-      content: "";
-      height: 22px;
-      width: 22px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-
-    input:checked + .toggle-slider {
-      background-color: var(--primary-btn);
-    }
-
-    input:checked + .toggle-slider:before {
-      transform: translateX(30px);
-    }
-
-    .toggle-icon {
-      margin-right: 3px;
-      margin-bottom: 2px;
-      font-size: 22px;
-    }
-  </style>
+        @media (max-width: 768px) {
+            .logo {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+            
+            .player-settings button,
+            .download-btn {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .player-settings {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .download-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-  <header>
-    <div class="dark-mode-toggle">
-      <label class="toggle-switch">
-        <input type="checkbox" id="darkModeToggle">
-        <span class="toggle-slider"></span>
-      </label>
-      <span class="toggle-icon">🌓</span>
-    </div>
-    <div class="logo-container">
-      <img src="https://i.imghippo.com/files/kfXw7179kyo.png" alt="remo TV Logo">
-    </div>
-  </header>
+<div class="logo-container">
+  <a href="https://remotvlive.github.io" target="_blank">
+    <img src="https://up6.cc/2025/07/175268383395971.png" alt="remo TV Logo">
+  </a>
+</div>
 
   <div class="player-container">
     <video id="video" controls autoplay playsinline></video>
@@ -540,56 +430,30 @@
 
   <div class="player-settings">
     <button onclick="showChannelDialog()">
-      <img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" alt="Channel Icon">
+      <i class="fas fa-tv"></i>
       تغيير القناة
     </button>
     <button onclick="showQualityDialog()">
-      <img src="https://cdn-icons-png.flaticon.com/512/709/709586.png" alt="Quality Icon">
+      <i class="fas fa-cog"></i>
       تغيير الجودة
     </button>
   </div>
 
-  <div class="download-section">
-    <h2><strong>حمل التطبيق الآن</strong></h2>
-    <div class="download-buttons">
-      <a href="https://www.mediafire.com/file/hsnp64lq06cm0zw/remo_TV_v3.91.apk/file" target="_blank">
-        <button>
-          <img src="https://i.pinimg.com/474x/b9/55/e9/b955e929305c5934632d9ecfab2f5b30.jpg" alt="Mediafire Logo">
-          ميديا فاير
-        </button>
-      </a>
-      <a href="https://apkpure.com/remo-tv-player/com.remo.player/download" target="_blank">
-        <button>
-          <img src="https://cdn-1.webcatalog.io/catalog/apkpure/apkpure-icon-filled-256.png?v=1714773022463" alt="APKPure Logo">
-          APKPure
-        </button>
-      </a>
-    </div>
-  </div>
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+  <a href="https://remodownload.github.io/" class="download-btn" target="_blank">
+    <i class="fas fa-download"></i>
+    حمل التطبيق
+  </a>
 
-  <div class="contact-section">
-    <h2><strong>تواصل معنا</strong></h2>
-    <div class="contact-buttons">
-      <a href="https://t.me/remotvv" target="_blank">
-        <button class="telegram">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png"Telegram Logo">
-          قناتنا على تليجرام
-        </button>
-      </a>
-      <a href="https://t.me/remo_dev_bot" target="_blank">
-        <button class="report">
-          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Report Icon">
-          الإبلاغ عن مشكلة
-        </button>
-      </a>
-    </div>
-  </div>
-
+  <a href="https://t.me/your_channel" class="download-btn" target="_blank">
+    <i class="fab fa-telegram-plane"></i>
+    إنضم إلى حسابنا على تيلجرام
+  </a>
+</div>
   <div id="channelDialog">
     <div class="dialog-box">
       <h2>إختر القناة</h2>
       
-      <!-- سيتم إضافة القنوات ديناميكيًا عبر JavaScript -->
       <div id="channelsContainer"></div>
       
       <button class="close-dialog" onclick="hideChannelDialog()">إغلاق</button>
@@ -603,17 +467,6 @@
         <option value="auto">تلقائي</option>
       </select>
       <button class="close-dialog" onclick="hideQualityDialog()">إغلاق</button>
-    </div>
-  </div>
-
-  <div id="telegramDialog">
-    <div class="dialog-box">
-      <h2>تنبيه</h2>
-      <p>إشترك بقناتنا على التلجرام لمتابعة أخبار التطبيق والموقع</p>
-      <div class="dialog-actions">
-        <button class="confirm" onclick="window.open('https://t.me/remotvv', '_blank'); hideTelegramDialog();">موافق</button>
-        <button class="cancel" onclick="hideTelegramDialog()">إلغاء</button>
-      </div>
     </div>
   </div>
 
@@ -686,7 +539,6 @@
     };
 
     function stopAllPlayers() {
-      // إيقاف مشغل الفيديو الأصلي
       if (video) {
         video.pause();
         video.currentTime = 0;
@@ -694,13 +546,11 @@
         video.load();
       }
       
-      // إيقاف مشغل HLS إذا كان موجودًا
       if (hls) {
         hls.destroy();
         hls = null;
       }
       
-      // إيقاف مشغل iframe الخارجي
       if (externalPlayerFrame) {
         externalPlayerFrame.src = '';
       }
@@ -711,10 +561,8 @@
       container.innerHTML = '';
       
       for (const [groupName, channelList] of Object.entries(channels)) {
-        // تصفية القنوات لاستبعاد تلك التي ليس لها روابط
         const validChannels = channelList.filter(channel => channel.url && channel.url.trim() !== '');
         
-        // إذا لم يكن هناك قنوات صالحة في هذه المجموعة، تخطيها
         if (validChannels.length === 0) continue;
         
         const groupDiv = document.createElement('div');
@@ -740,69 +588,10 @@
       }
     }
 
-    function checkDarkModePreference() {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const darkModeToggle = document.getElementById('darkModeToggle');
-      
-      if (localStorage.getItem('darkMode') === 'enabled') {
-        enableDarkMode();
-        darkModeToggle.checked = true;
-      } else if (localStorage.getItem('darkMode') === 'disabled') {
-        disableDarkMode();
-        darkModeToggle.checked = false;
-      } else if (prefersDark) {
-        enableDarkMode();
-        darkModeToggle.checked = true;
-      } else {
-        disableDarkMode();
-        darkModeToggle.checked = false;
-      }
-    }
-
-    function enableDarkMode() {
-      document.body.classList.add('dark-mode');
-      localStorage.setItem('darkMode', 'enabled');
-    }
-
-    function disableDarkMode() {
-      document.body.classList.remove('dark-mode');
-      localStorage.setItem('darkMode', 'disabled');
-    }
-
-    function showTelegramDialog() {
-      document.getElementById('telegramDialog').style.display = 'flex';
-    }
-
-    function hideTelegramDialog() {
-      document.getElementById('telegramDialog').style.display = 'none';
-      showChannelDialog();
-    }
-
     document.addEventListener('DOMContentLoaded', function() {
-      checkDarkModePreference();
-      renderChannels(); // عرض القنوات عند تحميل الصفحة
-      showTelegramDialog();
-      
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (localStorage.getItem('darkMode') === null) {
-          if (e.matches) {
-            enableDarkMode();
-            document.getElementById('darkModeToggle').checked = true;
-          } else {
-            disableDarkMode();
-            document.getElementById('darkModeToggle').checked = false;
-          }
-        }
-      });
-      
-      document.getElementById('darkModeToggle').addEventListener('change', function() {
-        if (this.checked) {
-          enableDarkMode();
-        } else {
-          disableDarkMode();
-        }
-      });
-    });
+  renderChannels();
+  playChannel("https://tv.sainaertebat.com/hls2/bein1.m3u8");
+});
 
     function showChannelDialog() {
       document.getElementById('channelDialog').style.display = 'flex';
@@ -821,13 +610,10 @@
     }
 
     function playChannel(streamUrl) {
-      // إيقاف جميع المشغلات أولاً
       stopAllPlayers();
-      
       hideChannelDialog();
       
       if (streamUrl.startsWith('external:')) {
-        // تشغيل البث الخارجي
         const externalUrl = streamUrl.replace('external:', '');
         const externalPlayer = document.querySelector('.external-player');
         
@@ -835,10 +621,8 @@
         externalPlayer.style.display = 'block';
         document.querySelector('.player-container').style.display = 'none';
       } else {
-        // تشغيل البث العادي
         document.querySelector('.player-container').style.display = 'block';
         document.querySelector('.external-player').style.display = 'none';
-        
         initPlayer(streamUrl);
       }
     }
