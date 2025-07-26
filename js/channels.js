@@ -2,15 +2,15 @@
 const channels = {
   "سيرفر أساسي": [
     { name: "beIN Sport 1", url: "https://wo.cma.footballii.ir/hls2/b1.m3u8" },
-    { name: "beIN Sport 2", url: "" },
-    { name: "beIN Sport 3", url: "" },
+    { name: "beIN Sport 2", url: "https://wo.cma.footballii.ir/hls2/b2_src.m3u8" },
+    { name: "beIN Sport 3", url: "https://wo.cma.footballii.ir/hls2/b3_src.m3u8" },
     { name: "beIN Sport 4", url: "" },
     { name: "beIN Sport 5", url: "" },
     { name: "beIN Sport 6", url: "" }
   ],
   "سيرفر إحتياطي": [
     { name: "beIN Sport 1", url: "https://tv.sainaertebat.com/hls2/bein1.m3u8" },
-    { name: "beIN Sport 2", url: "https://tv.sainaertebat.com/hls2/bein2.m3u8" },
+    { name: "beIN Sport 2", url: "" },
     { name: "beIN Sport 3", url: "" },
     { name: "4", url: "" }, 
     { name: "5", url: "" }, 
